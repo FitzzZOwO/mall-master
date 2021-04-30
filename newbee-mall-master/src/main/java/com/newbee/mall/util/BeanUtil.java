@@ -68,7 +68,7 @@ public abstract class BeanUtil {
         return (T) beanWrapper.getWrappedInstance();
     }
 
-    //检查Pojo对象是否有null字段
+    // 检查Pojo对象是否有null字段
     public static boolean checkPojoNullField(Object o, Class<?> clz) {
         try {
             Field[] fields = clz.getDeclaredFields();
