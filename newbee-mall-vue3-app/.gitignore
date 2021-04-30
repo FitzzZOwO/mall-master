@@ -22,7 +22,6 @@ pnpm-debug.log*
 *.sw?
 
 ### IntelliJ IDEA ###
-.idea
 *.iws
 *.iml
 *.ipr
@@ -34,3 +33,9 @@ pnpm-debug.log*
 /dist/
 /nbdist/
 /.nb-gradle/
+
+.idea/
+target/
+logs/
+node_modules/
+package-lock.json
