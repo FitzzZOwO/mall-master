@@ -1,0 +1,170 @@
+<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="mall/header::head-fragment('NewBee商城-选择支付方式','pay-select')">
+</head>
+<body>
+<div class="page-main">
+    <div class="container confirm-box">
+        <form action="#" id="J_payForm" method="post" target="_blank">
+            <div class="section section-order">
+                <div class="order-info clearfix">
+                    <div class="fl">
+                        <h2 class="title">订单提交成功！去付款咯～</h2>
+                        <input id="orderNoValue" th:value="${orderNo}" type="hidden">
+                        <p class="order-time" id="J_deliverDesc">订单号：
+                            <th:block th:text="${orderNo}"></th:block>
+                        </p>
+                    </div>
+                    <div class="fr">
+                        <p class="total">
+                            应付总额：<span class="money"><em><th:block
+                                th:text="${totalPrice+'.00'}"></th:block></em>元</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="section section-payment">
+                <div class="cash-title" id="J_cashTitle">
+                    选择以下支付方式付款
+                </div>
+
+                <div class="payment-box ">
+                    <div class="payment-header clearfix">
+                        <h3 class="title">支付平台</h3>
+                        <span class="desc"></span>
+                    </div>
+                    <div class="payment-body">
+                        <ul class="clearfix payment-list J_paymentList J_linksign-customize">
+                            <li class="J_alipay">
+                                <input id="alipay" name="payOnlineBank" type="radio" value="alipay">
+                                <img alt="支付宝" onclick="payOrder(1)" style="margin-left: 0;"
+                                     th:src="@{/mall/image/pay/payOnline_zfb.png}"></li>
+                            <li id="J_weixin">
+                                <input id="alipay" name="payOnlineBank" type="radio" value="alipay">
+                                <img alt="微信支付" onclick="payOrder(2)" style="margin-left: 0;"
+                                     th:src="@{/mall/image/pay/weixinpay.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="unionpay" name="payOnlineBank" type="radio" value="unionpay">
+                                <img alt="银联" style="margin-left: 0;"
+                                     th:src="@{/mall/image/pay/unionpay.png}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="payment-box">
+                    <div class="payment-header clearfix">
+                        <h3 class="title">银行借记卡及信用卡</h3>
+                    </div>
+                    <div class="payment-body">
+                        <ul class="clearfix payment-list payment-list-much J_paymentList J_linksign-customize">
+                            <li class="J_bank">
+                                <input id="CMB" name="payOnlineBank" type="radio" value="CMB">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_zsyh.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="ICBCB2C" name="payOnlineBank" type="radio" value="ICBCB2C">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_gsyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="CCB" name="payOnlineBank" type="radio" value="CCB">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_jsyh.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="COMM" name="payOnlineBank" type="radio" value="COMM">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_jtyh.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="ABC" name="payOnlineBank" type="radio" value="ABC">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_nyyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="BOCB2C" name="payOnlineBank" type="radio" value="BOCB2C">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_zgyh.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="PSBC-DEBIT" name="payOnlineBank" type="radio" value="PSBC-DEBIT">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_youzheng.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="GDB" name="payOnlineBank" type="radio" value="GDB">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_gfyh.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="SPDB" name="payOnlineBank" type="radio" value="SPDB">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_pufa.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="CEBBANK" name="payOnlineBank" type="radio" value="CEBBANK">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_gdyh.png}">
+                            </li>
+                            <li class="J_bank">
+                                <input id="CIB" name="payOnlineBank" type="radio" value="CIB">
+                                <img alt="" th:src="@{/mall/image/pay/payOnline_xyyh.png}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="payment-box payment-box-last ">
+                    <div class="payment-header clearfix">
+                        <h3 class="title">快捷支付</h3>
+                        <span class="desc">（支持以下各银行信用卡以及部分银行借记卡）</span>
+                    </div>
+                    <div class="payment-body">
+                        <ul class="clearfix payment-list  J_paymentList J_linksign-customize">
+                            <li class="J_bank">
+                                <input id="CMB-KQ" name="payOnlineBank" type="radio" value="CMB-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_zsyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="COMM-KQ" name="payOnlineBank" type="radio" value="COMM-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_jtyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="CCB-KQ" name="payOnlineBank" type="radio" value="CCB-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_jsyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="ICBCB2C-KQ" name="payOnlineBank" type="radio" value="ICBCB2C-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_gsyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="CITIC-KQ" name="payOnlineBank" type="radio" value="CITIC-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_zxyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="CEBBANK-KQ" name="payOnlineBank" type="radio" value="CEBBANK-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_gdyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="BOCB2C-KQ" name="payOnlineBank" type="radio" value="BOCB2C-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_zgyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="SRCB-KQ" name="payOnlineBank" type="radio" value="SRCB-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_shncsyyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="JSB-KQ" name="payOnlineBank" type="radio" value="JSB-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_jiangsshuyh.png}"></li>
+                            <li class="J_bank">
+                                <input id="CIB-KQ" name="payOnlineBank" type="radio" value="CIB-KQ"> <img
+                                    alt="" th:src="@{/mall/image/pay/payOnline_xyyh.png}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div th:replace="mall/footer::footer-fragment"></div>
+
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script type="text/javascript">
+    //给出提醒
+    $('.J_bank').click(function () {
+        alert('暂不支持，请耐心等候');
+    });
+
+    function payOrder(payType) {
+        var orderNo = $("#orderNoValue").val();
+        window.location.href = '/payPage?orderNo=' + orderNo + "&payType=" + payType;
+    }
+</script>
+</body>
+</html>
